@@ -1,15 +1,12 @@
 const router = require("express").Router();
+const path = require("path");
 
-const Workout = require('../models/workouts');
+router.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname,"../public/exercise.html"));
+});
 
-router.get('/stats', async (req, res) => {
-    try {
-        const workoutData = await Workout.find();
-        console.log(workoutData);
-    } catch (err) {
-        res.status(500).json(err);
-        console.log(err);
-    }
+router.get("/stats", (req, res) => {
+    res.sendFile(path.join(__dirname,"../public/stats.html"));
 });
 
 module.exports = router;
